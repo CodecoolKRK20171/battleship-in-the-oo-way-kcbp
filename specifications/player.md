@@ -17,10 +17,11 @@
 # instance methods
 - `choose_initial_ships_position(self)`
     - Takes ships positions from user.
-    - returns: dictionary with ships names as keys and tupples of given_positions as values
+    - returns: dictionary with ships names as keys and list of given positions as values
 - `is_vertical`
     - data: bool
     - description: indicates ship direction. True if vertical, False if horizontal.
+    - returns: dictionary with ships names as keys and list of given positions as values and bool
 - `check_if_position_are_valid(self, given_position)`
     - Checks if ships don't overlay each other and don't hang off the edge.
     - returns: bool
