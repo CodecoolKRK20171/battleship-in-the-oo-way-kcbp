@@ -4,10 +4,10 @@ import re
 class Player:
     pass
 
-    def __init__(self, name, player_ocean, enemy_ocean):
+    def __init__(self, name):
         self.name = name
-        self.player_ocean = player_ocean
-        self.enemy_ocean = enemy_ocean
+        self.player_ocean = Ocean()
+        self.enemy_ocean = Ocean()
 
     def choose_initial_ships_position(self):
         """
@@ -36,17 +36,18 @@ class Player:
                   ship_cords_list[0] = numbers_str[i]
               given_position[element] = [int(ship_cords_list[0]), int(ship_cords[1])]
 
+             is_vertical(given_position, element)
+
         return given_position
 
-    def is_vertical(self, given_position):
+    def is_vertical(self, given_position, element):
         """indicates ship direction. True if vertical, False if horizontal"""
 
-        for key in given_position.keys():
-            is_vertical = input('If situation of ' + key + 'suppouse to be vertical, input 1, otherwise 0: ')
-            if is_vertical == "1":
-                given_position[key].append(True)
-            elif is_vertical = "0":
-                given_position[key].append(False)
+        is_vertical = input('If situation of ' + element + 'suppouse to be vertical, input 1, otherwise 0: ')
+        if is_vertical == "1":
+          given_position[element].append(True)
+        elif is_vertical == "0":
+          given_position[element].append(False)
 
         return given_position
 
