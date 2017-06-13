@@ -11,3 +11,8 @@
 - `columnn`
     - data: int
     - description: indicates on which column square lies
+
+# instance methods
+- `__init__(self, row, column)`
+    - Create unmarked Square object with given position.
+    - returns: None
