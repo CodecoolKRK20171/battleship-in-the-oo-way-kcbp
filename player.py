@@ -34,11 +34,21 @@ class Player:
               for i in range(len(letters)):
                 if ship_cords_list[0] == letters[i]:
                   ship_cords_list[0] = numbers_str[i]
-              given_position[element] = (int(ship_cords_list[0]), int(ship_cords[1]))
+              given_position[element] = [int(ship_cords_list[0]), int(ship_cords[1])]
 
         return given_position
 
-    # def is_vertical(self):
+    def is_vertical(self, given_position):
+        """indicates ship direction. True if vertical, False if horizontal"""
+
+        for key in given_position.keys():
+            is_vertical = input('If situation of ' + key + 'suppouse to be vertical, input 1, otherwise 0: ')
+            if is_vertical == "1":
+                given_position[key].append(True)
+            elif is_vertical = "0":
+                given_position[key].append(False)
+
+        return given_position
 
     def check_if_position_are_valid(self, given_position):
         pass
