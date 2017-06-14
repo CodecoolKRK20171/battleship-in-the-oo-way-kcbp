@@ -11,7 +11,7 @@ class Ship:
         self.positions.append(position)
         column = position[0]
         row = position[1]
-        for i in range(Ship.ship_types[name]-1):
+        for i in range(Ship.ship_types[name] - 1):
             if is_vertical:
                 row += 1
             else:
@@ -19,12 +19,9 @@ class Ship:
             self.positions.append((column, row))
         # print(self.positions)
 
-
     def is_sunk(self):
         sunk = True
         for square in self.positions:
             if not square.is_marked():
                 sunk = False
         return sunk
-
-

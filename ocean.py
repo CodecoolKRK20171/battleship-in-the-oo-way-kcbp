@@ -1,5 +1,6 @@
 from ship import Ship
 
+
 class Ocean:
 
     def __init__(self):
@@ -7,18 +8,16 @@ class Ocean:
         self.ships = []
         self.board = []
         for i in range(size_of_board):
-            self.board.append(['~']*size_of_board)
-
+            self.board.append(['~'] * size_of_board)
 
     def __str__(self):
         output = ''
         for row in self.board:
-            output += ''.join(row)+'\n'
+            output += ''.join(row) + '\n'
         return output
 
     # def add_ship(self, ship):
     #    self.ships.append(ship)
-
 
     def check_if_position_is_valid(self, new_ship_data):
 
@@ -60,16 +59,17 @@ class Ocean:
         for ship in self.ships:
             for position in ship.positions:
                 if (column, row) == position:
-                    self.board[row-1][column-1] = 'X'
+                    self.board[row - 1][column - 1] = 'X'
                     return True
-        self.board[row-1][column-1] = 'O'
+        self.board[row - 1][column - 1] = 'O'
         return False
 
     def insert_ships(self):
         for ship in self.ships:
             for position in ship.positions:
                 column, row = position
-                self.board[row-1][column-1] = 'X'
+                self.board[row - 1][column - 1] = 'X'
+
 
 def main():
     # ship1 = Ship('Cruiser', (1,2), True)
