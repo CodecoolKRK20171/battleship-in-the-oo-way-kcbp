@@ -32,10 +32,9 @@ def add_ships_by(player):
 def turn_handle(player):
 
 
-    print(player.player_ocean)
-    print()
-    print(player.enemy_ocean)
-    print()
+    print(player.player_ocean, '\n')
+    print(player.enemy_ocean, '\n')
+
 
     correct_cords = False
     while not correct_cords:
@@ -45,6 +44,7 @@ def turn_handle(player):
             print(err)
         else:
             is_hit = player.enemy_ocean.insert_shot(cords)
+            player.enemy_ocean.check_if_sunk(cords)
             correct_cords = True
 
     print(player.enemy_ocean)

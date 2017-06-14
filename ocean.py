@@ -81,27 +81,32 @@ class Ocean:
         y = 1
         column = cords[x]
         row = cords[y]
-        is_hit = False
+ 
         for ship in self.ships:
 
             for position in ship.positions:
 
                 if (column, row) == position:
                     self.board[row - 1][column - 1] = 'X'
-                    is_hit = True
-                    break
+                    return True
+     
+        self.board[row - 1][column - 1] = 'O'
 
-            for square in ship.squares:
-                if square.column == column and square.row == row:
-                    square.is_marked = True
-            if ship.is_sunk():
-                print('You hit and sunk the {}!'.format(ship.name))
-        if not is_hit:
-            self.board[row - 1][column - 1] = 'O'
-
-        return is_hit
+        return False
 
     def insert_ship(self, ship):
         for position in ship.positions:
             column, row = position
             self.board[row-1][column-1] = 'X'
+    
+    def check_if_sunk(self, cords):
+        x = 0
+        y = 1
+        column = cords[x]
+        row = cords[y]
+        for ship in self.ships:
+            for square in ship.squares:
+                if square.column == column and square.row == row:
+                    square.is_marked = True
+            if ship.is_sunk():
+                print('You hit and sunk the {}!'.format(ship.name))
