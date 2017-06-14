@@ -19,7 +19,7 @@ class Player:
         """
         new_ship_data = []
         letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
-        numbers_str = [str(i) for i in list(range(1,11))]
+        numbers_str = [str(i) for i in list(range(1, 11))]
 
         ship_cords = input('Enter ship starting coordinates for ' + ship_name + ': (f.e. a6/A6)').upper()
         if not re.match("^[a-jA-J][1-9]$|^[a-jA-J][1][0]$", ship_cords):
@@ -46,7 +46,6 @@ class Player:
             new_ship_data.append(False)
 
         return new_ship_data
-
 
     def choose_shoot_cords(self):
         pass
