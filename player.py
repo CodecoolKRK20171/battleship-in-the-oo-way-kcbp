@@ -76,7 +76,7 @@ class Player:
             coordinates = [ship_or_shot_cords[0], ship_or_shot_cords[1:]]
             for i in range(len(letters)):
                 if coordinates[0] == letters[i]:
-                    coordinates[0] = numbers_str[i]
+                    coordinates[0] = numbers[i]
             cords_xy = (int(coordinates[0]), int(ship_or_shot_cords[1:]))
         else:
             raise ValueError('Wrong Input!')
