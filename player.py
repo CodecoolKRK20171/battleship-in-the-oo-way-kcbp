@@ -53,6 +53,11 @@ class Player:
 
     def is_win(self):
         pass
+        # for ship in self.enemy_ocean.ships:
+        #     for square in ship.squares:
+        #         if not square.is_marked():
+        #             return False
+        # return True
 
     @staticmethod
     def take_coordinates(input_message, ship_name=""):

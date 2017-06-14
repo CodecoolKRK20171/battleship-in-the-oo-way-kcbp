@@ -58,7 +58,8 @@ def main():
     counter_player_two = 0
     total_ships_squares = 17
 
-    while counter_player_one != total_ships_squares and counter_player_two != total_ships_squares:
+    while counter_player_one != total_ships_squares and \
+          counter_player_two != total_ships_squares:
 
         os.system('clear')
         input()
@@ -71,7 +72,6 @@ def main():
 
         while turn_handle(player_two):
             counter_player_two += 1
-
 
 if __name__ == '__main__':
     main()
