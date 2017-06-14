@@ -20,24 +20,27 @@ class Ocean:
 
         ship_name = new_ship_data[0]
         ship_length = Ship.ship_types[new_ship_data[0]]
-        row = new_ship_data[1][0]
-        col = new_ship_data[1][1]
+        col = new_ship_data[1][0]
+        row = new_ship_data[1][1]
         is_vertical = new_ship_data[2]
 
         if is_vertical:
             if row not in range(0, 11 - ship_length):
+                print('Ship out of the ocean')
                 return False
         else:
             if col not in range(0, 11 - ship_length):
+                print('Ship out of the ocean')
                 return False
 
-        for ship_part in range(ship_length - 1):
+        for ship_part in range(ship_length):
             try:
-                if(self.board[row][col] != '~' or
-                        self.board[row + 1][col] != '~' or
-                        self.board[row - 1][col] != '~' or
-                        self.board[row][col + 1] != '~' or
+                if(self.board[row][col] != '~' and
+                        self.board[row + 1][col] != '~' and
+                        self.board[row - 1][col] != '~' and
+                        self.board[row][col + 1] != '~' and
                         self.board[row][col - 1] != '~'):
+                    print('Ship overlay another ship.')
                     return False
             except IndexError:
                 print('Coordinates out of the ocean.')
