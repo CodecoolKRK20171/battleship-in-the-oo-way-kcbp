@@ -16,11 +16,9 @@ class Ocean:
             output += ''.join(row) + '\n'
         return output
 
-    # def add_ship(self, ship):
-    #    self.ships.append(ship)
-
     def check_if_position_is_valid(self, new_ship_data):
 
+        ship_name = new_ship_data[0]
         ship_length = Ship.ship_types[new_ship_data[0]]
         row = new_ship_data[1][0]
         col = new_ship_data[1][1]
@@ -48,6 +46,9 @@ class Ocean:
                 row += 1
             else:
                 col += 1
+        ship = Ship(*new_ship_data)
+        self.ships.append(ship)
+        self.insert_ship(ship)
         return True
 
     def insert_shoot(self, cords):
@@ -55,7 +56,6 @@ class Ocean:
         y = 1
         column = cords[x]
         row = cords[y]
-        # print('{} {}'.format(row, column))
         for ship in self.ships:
             for position in ship.positions:
                 if (column, row) == position:
@@ -64,19 +64,22 @@ class Ocean:
         self.board[row - 1][column - 1] = 'O'
         return False
 
-    def insert_ships(self):
-        for ship in self.ships:
-            for position in ship.positions:
-                column, row = position
-                self.board[row - 1][column - 1] = 'X'
-
+    def insert_ship(self, ship):
+        for position in ship.positions:
+            column, row = position
+            self.board[row-1][column-1] = 'X'
 
 def main():
     # ship1 = Ship('Cruiser', (1,2), True)
     # ship2 = Ship('Battleship', (5,5))
     ocean = Ocean()
     new_ship_data = ['Cruiser', (1, 1), True]
+    new_ship_data1 = ['Battleship', (4, 4), False]
+    new_ship_data2 = ['Battleship', (4, 4), True]
     ocean.check_if_position_is_valid(new_ship_data)
+    ocean.check_if_position_is_valid(new_ship_data1)
+    ocean.check_if_position_is_valid(new_ship_data2)
+    # ocean.insert_ship()
 
     # player_ocean = Ocean()
     # enemy_ocean = Ocean()
@@ -89,7 +92,7 @@ def main():
     # enemy_ocean.insert_shoot((1,3))
     # # enemy_ocean = player_ocean.copy.deepcopy()
     # player_ocean.insert_ships()
-    # print(player_ocean)
+    print(ocean)
     # print()
     # print(enemy_ocean)
 
