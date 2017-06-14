@@ -10,6 +10,17 @@ class Player:
         self.enemy_ocean = Ocean()
 
     def choose_initial_ship_position(self, ship_name):
+        """
+        parameters:
+        -----------
+        ship names
+
+        Takes ships positions from user.
+
+        returns:
+        ---------
+        list with ships names as keys and tupples of given_positions as values and situation as bool
+        """
         ship_position_cords = Player.take_coordinates('Enter ship starting coordinates for', ship_name)
         new_ship_data = [ship_name, ship_position_cords]
 
@@ -45,6 +56,17 @@ class Player:
 
     @staticmethod
     def take_coordinates(input_message, ship_name=""):
+        """
+        parameters:
+        -----------
+        takes input message, and ship name if exist
+
+        method converts letters to numbers(0,10)
+
+        returns:
+        --------
+        tuple with two integers as cords
+        """
         letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
         numbers_str = [str(i) for i in list(range(1, 11))]
 

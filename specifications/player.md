@@ -16,21 +16,23 @@
 
 # instance methods
 - `__init__(self, name)`
-    - Creates Player object with given name and two Ocean objects.
+    - description: Creates Player object with given name and two Ocean objects.
     - returns: None
 - `choose_initial_ships_position(self)`
-    - Takes ships positions from user.
-    - returns: dictionary with ships names as keys and list of given positions as values
+    - parameters: ship names
+    - description: Takes ships positions from user.
+    - returns: list with ships names as keys and tupples of given_positions as values and situation as bool
 - `is_vertical`
     - data: bool
     - description: indicates ship direction. True if vertical, False if horizontal.
-    - returns: dictionary with ships names as keys and list of given positions as values and bool
-- `check_if_position_are_valid(self, given_position)`
-    - Checks if ships don't overlay each other and don't hang off the edge.
-    - returns: bool
+    - returns: list with ships names as keys and tupple of given positions as values and bool
 - `choose_shoot_cords(self)`
-    - Takes coordinates for atack from user.
+    - description: Takes coordinates for atack from user.
     - returns: tuple with two integers
 - `win_or_lose(self)`
-    - Checks if there is any part of ship left
+    - description: Checks if there is any part of ship left
     - returns: bool
+- `take_coordinates(input_message, ship_name="")`
+    - parameters: takes input message, and ship name if exist.
+    - description: method converts letters to numbers(0,10)
+    - returns: tuple with two integers as cords
