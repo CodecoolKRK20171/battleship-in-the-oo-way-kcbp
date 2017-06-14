@@ -43,6 +43,12 @@ class Ocean:
                             self.board[row][col - 1] != '~'):
                         print('Ship is overlap another ship')
                         return False
+                elif row == 9 and col == 9:
+                    if(self.board[row][col] != '~' or
+                            self.board[row - 1][col] != '~' or
+                            self.board[row][col - 1] != '~'):
+                        print('Ship is overlap another ship')
+                        return False
                 elif row == 9:
                     if(self.board[row][col] != '~' or
                             self.board[row - 1][col] != '~' or
