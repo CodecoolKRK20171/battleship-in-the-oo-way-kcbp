@@ -68,17 +68,17 @@ class Player:
         tuple with two integers as cords
         """
         letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
-        numbers_str = [str(i) for i in list(range(1, 11))]
+        numbers = [str(i) for i in list(range(1, 11))]
 
         ship_or_shot_cords = input('{} {} (f.e. a6/A6):'.format(input_message, ship_name)).upper()
 
         if re.match("^[a-jA-J][1-9]$|^[a-jA-J][1][0]$", ship_or_shot_cords):
-            cords_list = [ship_or_shot_cords[0], ship_or_shot_cords[1:]]
+            coordinates = [ship_or_shot_cords[0], ship_or_shot_cords[1:]]
             for i in range(len(letters)):
-                if cords_list[0] == letters[i]:
-                    cords_list[0] = numbers_str[i]
-            cords_tuple = (int(cords_list[0]), int(ship_or_shot_cords[1:]))
+                if coordinates[0] == letters[i]:
+                    coordinates[0] = numbers_str[i]
+            cords_xy = (int(coordinates[0]), int(ship_or_shot_cords[1:]))
         else:
             raise ValueError('Wrong Input!')
 
-        return cords_tuple
+        return cords_xy
