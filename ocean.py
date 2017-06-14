@@ -1,4 +1,5 @@
 from ship import Ship
+from square import Square
 
 
 class Ocean:
@@ -80,13 +81,25 @@ class Ocean:
         y = 1
         column = cords[x]
         row = cords[y]
+        is_hit = False
         for ship in self.ships:
+
             for position in ship.positions:
+
                 if (column, row) == position:
                     self.board[row - 1][column - 1] = 'X'
-                    return True
-        self.board[row - 1][column - 1] = 'O'
-        return False
+                    is_hit = True
+                    break
+
+            for square in ship.squares:
+                if square.column == column and square.row == row:
+                    square.is_marked = True
+            if ship.is_sunk():
+                print('You hit and sunk the {}!'.format(ship.name))
+        if not is_hit:
+            self.board[row - 1][column - 1] = 'O'
+
+        return is_hit
 
     def insert_ship(self, ship):
         for position in ship.positions:
