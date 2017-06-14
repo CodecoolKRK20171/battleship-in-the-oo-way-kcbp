@@ -5,10 +5,20 @@ class Ship:
                   'Submarine': 3,
                   'Destroyer': 2}
 
-    def __init__(self, name, positions, is_vertical=False):
+    def __init__(self, name, position, is_vertical=False):
         self.name = name
-        self.positions = positions
-        self.is_vertical = is_vertical
+        self.positions = []
+        self.positions.append(position)
+        column = position[0]
+        row = position[1]
+        for i in range(Ship.ship_types[name]-1):
+            if is_vertical:
+                row += 1
+            else:
+                column += 1
+            self.positions.append((column, row))
+        # print(self.positions)
+
 
     def is_sunk(self):
         sunk = True
@@ -18,4 +28,3 @@ class Ship:
         return sunk
 
 
-re.match("^[a-jA-J][1-9]$|^[a-jA-J][1][0]$", input)
