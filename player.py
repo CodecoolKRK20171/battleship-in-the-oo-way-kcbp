@@ -1,3 +1,4 @@
+from ocean import Ocean
 import re
 
 
@@ -19,7 +20,7 @@ class Player:
         """
         new_ship_data = []
         letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
-        numbers_str = [str(i) for i in list(range(1,11))]
+        numbers_str = [str(i) for i in list(range(1, 11))]
 
         ship_cords = input('Enter ship starting coordinates for ' + ship_name + ': (f.e. a6/A6)').upper()
         if not re.match("^[a-jA-J][1-9]$|^[a-jA-J][1][0]$", ship_cords):
@@ -47,9 +48,31 @@ class Player:
 
         return new_ship_data
 
+    def choose_shot_cords(self):
+        """
+        Takes coordinates for atack from user.
 
-    def choose_shoot_cords(self):
-        pass
+        returns
+        -------
+        tuple with two integers
+        """
+
+        letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
+        numbers_str = [str(i) for i in list(range(1, 11))]
+
+        shot_cords = input('Enter shoot coordinates: (f.e. a6/A6)').upper()
+
+        if not re.match("^[a-jA-J][1-9]$|^[a-jA-J][1][0]$", shot_cords):
+            raise ValueError('Wrong Input!')
+
+        else:
+            shot_cords_list = [shot_cords[0], shot_cords[1]]
+            for i in range(len(letters)):
+                if shot_cords_list[0] == letters[i]:
+                    shot_cords_list[0] = numbers_str[i]
+            shot_cords_tuple = (int(shot_cords_list[0]), int(shot_cords[1]))
+
+        return shot_cords_tuple
 
     def is_win(self):
         pass
