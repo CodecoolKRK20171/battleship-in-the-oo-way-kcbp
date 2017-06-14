@@ -36,6 +36,8 @@ class Player:
             new_ship_data.append(True)
         elif is_vertical == "0":
             new_ship_data.append(False)
+        else:
+            raise ValueError('Wrong Input!')
 
         return new_ship_data
 
@@ -50,14 +52,6 @@ class Player:
         shot_cords = Player.take_coordinates('Enter shot coordinates')
 
         return shot_cords
-
-    def is_win(self):
-        pass
-        # for ship in self.enemy_ocean.ships:
-        #     for square in ship.squares:
-        #         if not square.is_marked():
-        #             return False
-        # return True
 
     @staticmethod
     def take_coordinates(input_message, ship_name=""):
