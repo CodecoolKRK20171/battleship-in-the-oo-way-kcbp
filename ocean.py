@@ -69,7 +69,7 @@ class Ocean:
         self.insert_ship(ship)
         return True
 
-    def insert_shoot(self, cords):
+    def insert_shot(self, cords):
         x = 0
         y = 1
         column = cords[x]

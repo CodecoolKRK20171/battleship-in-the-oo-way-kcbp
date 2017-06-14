@@ -1,3 +1,4 @@
+import os
 from square import Square
 from ship import Ship
 from ocean import Ocean
@@ -28,6 +29,23 @@ def add_ships_by(player):
         print(player.player_ocean)
 
 
+def turn_handle(player):
+    
+
+    print(player.player_ocean)
+    print()
+    print(player.enemy_ocean)
+    print()
+
+    cords = player.choose_shot_cords()
+    is_hit = player.enemy_ocean.insert_shot(cords)
+
+    print(player.enemy_ocean)
+
+    return is_hit
+
+
+
 def main():
 
     player_one = set_player('First')
@@ -36,25 +54,25 @@ def main():
     player_one.enemy_ocean.ships = player_two.player_ocean.ships
     player_two.enemy_ocean.ships = player_one.player_ocean.ships
 
-    # current_player = player_one
-    print(player_one.player_ocean + '\n')
-    print(player_one.enemy_ocean)
-    cords = player_one.choose_shot_cords()
-    player_two.enemy_ocean.insert_shoot(cords)
+    counter_player_one = 0
+    counter_player_two = 0
+    total_ships_squares = 17
 
-    print(player_one.player_ocean + '\n')
-    print(player_one.enemy_ocean)
-    # counter_player_one = 0
-    # counter_player_two = 0
-    # total_ships_squares = 17
-# 
-    # while counter_player_one != total_ships_squares and 
-        #   counter_player_two != total_ships_squares:
-# 
-        # print(current_player.player_ocean + '\n')
-        # print(current_player.enemy_ocean)
-        # cords = current_player.choose_shot_cords()
-        # player_two.enemy_ocean.insert_shoot(cords)   
+    while counter_player_one != total_ships_squares and \
+          counter_player_two != total_ships_squares:
+        
+        os.system('clear')
+        input()
+
+        while turn_handle(player_one):
+            counter_player_one += 1
+
+        os.system('clear')
+        input()
+
+        while turn_handle(player_two):
+            counter_player_two += 1
+
 
 if __name__ == '__main__':
     main()
