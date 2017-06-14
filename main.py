@@ -10,6 +10,7 @@ def set_player(nr):
     add_ships_by(player)
     return player
 
+
 def add_ships_by(player):
     for ship_name in Ship.ship_types:
         is_valid = False
@@ -23,7 +24,7 @@ def add_ships_by(player):
                 is_valid = player.player_ocean.check_if_position_is_valid(ship_data)
                 if not is_valid:
                     print('Wrong coordinates. Try again.')
-                    
+
         print(player.player_ocean)
 
 
@@ -32,12 +33,8 @@ def main():
     player_one = set_player('First')
     player_two = set_player('Second')
 
-    print
- 
-    
+    print(player_one.player_ocean)
 
-    # name_2 = input()
-    # player_two =
 
 
 if __name__ == '__main__':
