@@ -28,13 +28,10 @@ def add_ships_by(player):
         print(player.player_ocean)
 
 
-
 def turn_handle(player):
 
-
-    print(player.player_ocean, '\n')
+    print('Turn: {}'.format(player.name))
     print(player.enemy_ocean, '\n')
-
 
     correct_cords = False
     while not correct_cords:
@@ -43,14 +40,16 @@ def turn_handle(player):
         except ValueError as err:
             print(err)
         else:
-            is_hit = player.enemy_ocean.insert_shot(cords)
-            player.enemy_ocean.check_if_sunk(cords)
             correct_cords = True
-
-    print(player.enemy_ocean)
+            is_hit = player.enemy_ocean.insert_shot(cords)
+            if is_hit:
+                os.system('clear')
+                if player.enemy_ocean.check_if_sunk(cords):
+                    print('You hit and sunk!')
+                else:
+                    print('You hit!')
 
     return is_hit
-
 
 
 def main():
@@ -64,39 +63,27 @@ def main():
     player_one.enemy_ocean.ships = player_two.player_ocean.ships
     player_two.enemy_ocean.ships = player_one.player_ocean.ships
 
-    counter_player_one = 0
-    counter_player_two = 0
-    total_ships_squares = 17
+    is_win = False
+    current_player = player_one
+    while not is_win:
 
-
-    while True:
-        
         os.system('clear')
 
-        while turn_handle(player_one):
+        while turn_handle(current_player):
+
+            if not current_player.enemy_ocean.ships:
+                print('{} win!'.format(current_player.name))
+                is_win = True
+                break
+
+        if not is_win:
             os.system('clear')
-            input('You hit!')
-            counter_player_one += 1
+            input('You miss!')
 
-        if counter_player_one == total_ships_squares:
-            print('{} win!'.format(player_one.name))
-            break
-        
-        os.system('clear')
-        input('You miss!')
-
-        while turn_handle(player_two):
-            os.system('clear')
-            input('You hit!')
-            counter_player_two += 1
-
-
-        if counter_player_two == total_ships_squares:
-            print('{} win!'.format(player_two.name))
-            break
-
-        os.system('clear')
-        input('You miss!')       
+        if current_player == player_one:
+            current_player = player_two
+        else:
+            current_player = player_one
 
 
 if __name__ == '__main__':

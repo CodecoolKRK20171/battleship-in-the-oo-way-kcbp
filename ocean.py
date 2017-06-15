@@ -81,7 +81,7 @@ class Ocean:
         y = 1
         column = cords[x]
         row = cords[y]
- 
+
         for ship in self.ships:
 
             for position in ship.positions:
@@ -89,8 +89,8 @@ class Ocean:
                 if (column, row) == position:
                     self.board[row - 1][column - 1] = 'X'
                     return True
-     
-        self.board[row - 1][column - 1] = 'O'
+        if self.board[row - 1][column - 1] == '~':
+            self.board[row - 1][column - 1] = 'O'
 
         return False
 
@@ -98,7 +98,7 @@ class Ocean:
         for position in ship.positions:
             column, row = position
             self.board[row-1][column-1] = 'X'
-    
+
     def check_if_sunk(self, cords):
         x = 0
         y = 1
@@ -109,4 +109,7 @@ class Ocean:
                 if square.column == column and square.row == row:
                     square.is_marked = True
             if ship.is_sunk():
-                print('You hit and sunk the {}!'.format(ship.name))
+                self.ships.remove(ship)
+                return True
+            else:
+                return False
