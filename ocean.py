@@ -35,8 +35,9 @@ class Ocean:
                 return False
 
         for ship_part in range(ship_length):
+            last_index = 9
             try:
-                if row != 9 and col != 9:
+                if row != last_index and col != last_index:
                     if(self.board[row][col] != '~' or
                             self.board[row + 1][col] != '~' or
                             self.board[row - 1][col] != '~' or
@@ -44,20 +45,20 @@ class Ocean:
                             self.board[row][col - 1] != '~'):
                         print('Ship is overlap another ship')
                         return False
-                elif row == 9 and col == 9:
+                elif row == last_index and col == last_index:
                     if(self.board[row][col] != '~' or
                             self.board[row - 1][col] != '~' or
                             self.board[row][col - 1] != '~'):
                         print('Ship is overlap another ship')
                         return False
-                elif row == 9:
+                elif row == last_index:
                     if(self.board[row][col] != '~' or
                             self.board[row - 1][col] != '~' or
                             self.board[row][col + 1] != '~' or
                             self.board[row][col - 1] != '~'):
                         print('Ship is overlap another ship')
                         return False
-                elif col == 9:
+                elif col == last_index:
                     if(self.board[row][col] != '~' or
                             self.board[row + 1][col] != '~' or
                             self.board[row - 1][col] != '~' or

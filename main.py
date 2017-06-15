@@ -28,7 +28,7 @@ def add_ships_by(player):
         print(player.player_ocean)
 
 
-def turn_handle(player):
+def shot_handle(player):
 
     print('Turn: {}'.format(player.name))
     print(player.enemy_ocean, '\n')
@@ -48,8 +48,22 @@ def turn_handle(player):
                     print('You hit and sunk!')
                 else:
                     print('You hit!')
+            else:
+                os.system('clear')
+                input('You miss!')
 
     return is_hit
+
+
+def turn_handle(current_player):
+
+    os.system('clear')
+
+    while shot_handle(current_player):
+
+        if not current_player.enemy_ocean.ships:
+            print('{} win!'.format(current_player.name))
+            return True
 
 
 def main():
@@ -65,20 +79,10 @@ def main():
 
     is_win = False
     current_player = player_one
+
     while not is_win:
 
-        os.system('clear')
-
-        while turn_handle(current_player):
-
-            if not current_player.enemy_ocean.ships:
-                print('{} win!'.format(current_player.name))
-                is_win = True
-                break
-
-        if not is_win:
-            os.system('clear')
-            input('You miss!')
+        is_win = turn_handle(current_player)
 
         if current_player == player_one:
             current_player = player_two
