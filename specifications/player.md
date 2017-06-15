@@ -1,38 +1,32 @@
-# class description
-    Holds players attributes
+Holds player's attributes and takes all the inputs from user.
 
+### Class Player
 
-# instance attributes
+__Instance attributes__
+
 - `name`
     - data: str
-    - description: players name.
+    - description: players name
 - `player_ocean`
-    - data: Ocean class object
-    - description: board with players ships.
+    - data: *Ocean* class object
+    - description: board with players ships
 - `enemy_ocean`
-    - data: Ocean class object
-    - description: enemy board with hits and misses.
+    - data: *Ocean* class object
+    - description: enemy board with hits and misses
 
+__Instance methods__
 
-# instance methods
 - `__init__(self, name)`
-    - description: Creates Player object with given name and two Ocean objects.
-    - returns: None
-- `choose_initial_ships_position(self)`
-    - parameters: ship names
-    - description: Takes ships positions from user.
-    - returns: list with ships names as keys and tupples of given_positions as values and situation as bool
-- `is_vertical`
-    - data: bool
-    - description: indicates ship direction. True if vertical, False if horizontal.
-    - returns: list with ships names as keys and tupple of given positions as values and bool
-- `choose_shoot_cords(self)`
-    - description: Takes coordinates for atack from user.
-    - returns: tuple with two integers
-- `win_or_lose(self)`
-    - description: Checks if there is any part of ship left
-    - returns: bool
+    Creates *Player* object with given name and two *Ocean* objects.
+- `choose_initial_ship_position(self, ship_name)`
+    Takes ship position from the user. Returns: list with ship name, tuple of given_positions and vertical/horizontal orientation as bool.
+- `is_vertical(self, ship_name, new_ship_data)`
+    Indicates ship direction and add it to the list. True if vertical, False if horizontal. Returns list with ship name, tuple of given positions and bool.
+- `choose_shot_cords(self)`
+    Takes coordinates for attack from user and returns them in a tuple.
+
+__Static methods__
+
 - `take_coordinates(input_message, ship_name="")`
-    - parameters: takes input message, and ship name if exist.
-    - description: method converts letters to numbers(0,10)
-    - returns: tuple with two integers as cords
+    Get coordinates from the user and converts letters to numbers(0,10).
+    Returns tuple with two integers as cords.

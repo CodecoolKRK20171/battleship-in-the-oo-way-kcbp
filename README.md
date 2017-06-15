@@ -11,115 +11,150 @@ and the objective of the game is to destroy the opposing player's fleet.*
 # Specification
 
 
-## __main.py__
+### `main.py`
+
+This is the file which initializes program execution and contains all game logic.
+
+__Functions__
+
+- `set_player(nr)`
+    Creates and returns *Player* object with player name given from user. Calls other function to insert player's *Ship* objects into his attribute *player_ocean*.
+
+- `add_ships_by(player)`
+    Handles getting from user correct positions for *Ship* objects.
+
+- `shot_handle(player)`
+    Handles single user guess. Returns *True* if user hit the *Ship* object, *False* otherwise.
+
+- `is_win(current_player)`
+    Returns True if the winning condition is fulfilled. It means if there is no more *Ship* objects in attribute *ships* of attribute *enemy_ocean* of *Player* object.
+
+- `main()`
+    Initialize game execution, starts the main loop of the program.
 
 
-## __square.py__
-#### class description
-    Holds data for each square.
+### `square.py`
 
-#### instance attributes
-- `is_marked`
-    - data: bool
-    - description: indicates if square is marked or not
+Holds data for each square.
+
+### Class Square
+
+__Instance attributes__
+
 - `row`
     - data: int
     - description: indicates on which row square lies
 - `columnn`
     - data: int
     - description: indicates on which column square lies
+- `is_marked`
+    - data: bool
+    - description: indicates if square is marked or not
 
-#### instance methods
+__Instance methods__
 - `__init__(self, row, column)`
-    - Create unmarked Square object with given position.
+    Creates unmarked Square object with given position.
 
 
-## __ship.py__
-#### class description
-    Holds data needed for proper ship description and methods for management.
+### `ship.py`
 
-#### class atrributes
+Holds data needed for proper ship description and methods for management.
+
+### Class Ship
+
+__Class atrributes__
+
 - `ships_types`
     - data: dict
-    - description: keys with ships names and values with corresponding lenghts.
-    Used for length instance attribute creation.
+    - description: keys with ships names and values with corresponding lengths
 
-#### instance attributes
+__Instance attributes__
+
 - `name`
     - data: str
-    - description: one of 5 possible ship names.
+    - description: one of 5 possible ship names
 - `positions`
-    - data: tuple of Square objects
-    - description: carries all squares occupied by ship.
+    - data: list of tuples of ints
+    - description: carries all positions of ship squares
+- `squares`
+    - data: list of *Square* objects
+    - description: carries all ship's parts
 - `is_vertical`
     - data: bool
-    - description: indicates ship direction. True if vertical, False if horizontal.
+    - description: indicates ship direction. True if vertical, False if horizontal
 
-#### instance methods
-- `__init__(self, name, positions)`
-    - Creates Ship object with name and position.
+__Instance methods__
+
+- `__init__(self, name, positions, is_vertical=False)`
+    Creates Ship object with name, list of *Square* objects and list of all squares positions.
 - `is_sunk(self)`
-    - Checks if ship is sunk or not.
-    - returns: bool
+    Checks if ship is sunk or not. Returns bool.
 
 
-## __ocean.py__
-#### class description
-    contains all ships and game board and handles output
+### `ocean.py`
 
-#### attributes
+Contains all ships and game board and handles output.
+
+### Class Ocean
+
+
+__Instance attributes__
+
 - `ships`
-    - data: list of Ship objects
-    - description: holds all ships to append them to the board.
+    - data: list of *Ship* objects
+    - description: holds all ships to append them to the board
 - `board`
     - data: list of lists
-    - description: current board state.
+    - description: current board state
 
-#### instance methods
+__Instance methods__
+
 - `__init__(self)`
-    - Creates object with empty list as an atrribute.
+    Creates object with empty lists as the attributes.
 - `__str__(self)`
-    - Used for printing current board.
-- `add_ship(self, ship)`
-    - Inserts Ship object on the board.
-- `insert_shoot(self, cords)`
-    - Interts shoot mark ('X', 'O') on given coordinates.
+    Used for printing current board.
+- `check_if_position_is_valid(self, new_ship_data)`
+    Checks if given by user position of new ship is correct. If it's correct, creates new *Ship* object and adds it to the attribute *ships* list. Returns bool.
+- `insert_shot(self, cords)`
+    Inserts shot mark ('X' or 'O') on given coordinates into.
+- `insert_ship(self, ship)`
+    Inserts Ship object on the board.
+- `check_if_sunk(self, cords)`
+    Checks if all parts of the *Ship* have been hit. Returns bool.
 
 
-## __player.md__
-#### class description
-    Holds players attributes
 
-#### instance attributes
+### `player.py`
+
+Holds player's attributes and takes all the inputs from user.
+
+### Class Player
+
+__Instance attributes__
+
 - `name`
     - data: str
-    - description: players name.
+    - description: players name
 - `player_ocean`
-    - data: Ocean class object
-    - description: board with players ships.
+    - data: *Ocean* class object
+    - description: board with players ships
 - `enemy_ocean`
-    - data: Ocean class object
-    - description: enemy board with hits and misses.
+    - data: *Ocean* class object
+    - description: enemy board with hits and misses
 
-# instance methods
+__Instance methods__
+
 - `__init__(self, name)`
-    - description: Creates Player object with given name and two Ocean objects.
-    - returns: None
-- `choose_initial_ships_position(self)`
-    - parameters: ship names
-    - description: Takes ships positions from user.
-    - returns: list with ships names as keys and tupples of given_positions as values and situation as bool
-- `is_vertical`
-    - data: bool
-    - description: indicates ship direction. True if vertical, False if horizontal.
-    - returns: list with ships names as keys and tupple of given positions as values and bool
-- `choose_shoot_cords(self)`
-    - description: Takes coordinates for atack from user.
-    - returns: tuple with two integers
-- `win_or_lose(self)`
-    - description: Checks if there is any part of ship left
-    - returns: bool
+    Creates *Player* object with given name and two *Ocean* objects.
+- `choose_initial_ship_position(self, ship_name)`
+    Takes ship position from the user. Returns: list with ship name, tuple of given_positions and vertical/horizontal orientation as bool.
+- `is_vertical(self, ship_name, new_ship_data)`
+    Indicates ship direction and add it to the list. True if vertical, False if horizontal. Returns list with ship name, tuple of given positions and bool.
+- `choose_shot_cords(self)`
+    Takes coordinates for attack from user and returns them in a tuple.
+
+__Static methods__
+
 - `take_coordinates(input_message, ship_name="")`
-    - parameters: takes input message, and ship name if exist.
-    - description: method converts letters to numbers(0,10)
-    - returns: tuple with two integers as cords
+    Get coordinates from the user and converts letters to numbers(0,10).
+    Returns tuple with two integers as cords.
