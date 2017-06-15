@@ -6,6 +6,18 @@ from player import Player
 
 
 def set_player(nr):
+    """Creates Player object with name given from user.
+    Calls other function to insert player's Ship objects into his board.
+
+    Parameters:
+    -----------
+        nr : str
+            String with player's number.
+
+    Returns:
+    ---------
+        player : Player obj
+    """
     name = input('{} player please give your name: '.format(nr))
     player = Player(name)
     add_ships_by(player)
@@ -13,6 +25,12 @@ def set_player(nr):
 
 
 def add_ships_by(player):
+    """Handles getting correct positions for Ship objects from user.
+
+    Parameters:
+    -----------
+        player: Player obj
+    """
     for ship_name in Ship.ship_types:
         is_valid = False
         while not is_valid:
@@ -29,7 +47,17 @@ def add_ships_by(player):
 
 
 def shot_handle(player):
+    """Handles single user guess.
 
+    Parameters:
+    -----------
+        player: Player obj
+
+    Returns:
+    ---------
+        is_hit : bool
+            Indicates if user hit the ship.
+    """
     print('Turn: {}'.format(player.name))
     print(player.enemy_ocean, '\n')
 
@@ -55,8 +83,18 @@ def shot_handle(player):
     return is_hit
 
 
-def turn_handle(current_player):
+def is_win(current_player):
+    """Checks if the winning condition is fulfilled.
 
+    Parameters:
+    -----------
+        current_player: Player obj
+
+    Returns:
+    ---------
+        bool
+            Indicates if user won or not.
+    """
     os.system('clear')
 
     while shot_handle(current_player):
@@ -80,9 +118,7 @@ def main():
     is_win = False
     current_player = player_one
 
-    while not is_win:
-
-        is_win = turn_handle(current_player)
+    while not is_win(current_player):
 
         if current_player == player_one:
             current_player = player_two

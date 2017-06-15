@@ -3,8 +3,16 @@ from square import Square
 
 
 class Ocean:
+    """Class has methods to create and manage single Ocean object.
 
+    Attributes:
+        ships : list of Ship obj
+            Holds all ships to append them to the board.
+        board : list of lists
+            Current board state.
+    """
     def __init__(self):
+        """Creates object with empty lists as the attributes."""
         size_of_board = 10
         self.ships = []
         self.board = []
@@ -12,13 +20,25 @@ class Ocean:
             self.board.append(['~'] * size_of_board)
 
     def __str__(self):
+        """Prints current board state."""
         output = ''
         for row in self.board:
             output += ''.join(row) + '\n'
         return output
 
     def check_if_position_is_valid(self, new_ship_data):
+        """Checks if given by user position of new ship is correct.
+        If it's correct, creates new Ship object and adds it to the ships list.
 
+        Parameters:
+        -----------
+            new_ship_data : list
+                List with ships name, tuples of given positions and orientation as bool.
+
+        Returns:
+        ---------
+            bool
+        """
         ship_name = new_ship_data[0]
         ship_length = Ship.ship_types[new_ship_data[0]]
         col = new_ship_data[1][0] - 1
@@ -78,6 +98,17 @@ class Ocean:
         return True
 
     def insert_shot(self, cords):
+        """Inserts shot mark ('X' or 'O') on given coordinates into current board.
+
+        Parameters:
+        -----------
+            cords : tuple of ints
+                User shot.
+
+        Returns:
+        ---------
+            bool
+        """
         x = 0
         y = 1
         column = cords[x]
@@ -96,11 +127,28 @@ class Ocean:
         return False
 
     def insert_ship(self, ship):
+        """Inserts Ship object on the board.
+
+        Parameters:
+        -----------
+            ship : Ship obj
+        """
         for position in ship.positions:
             column, row = position
             self.board[row-1][column-1] = 'X'
 
     def check_if_sunk(self, cords):
+        """Checks if all parts of the *Ship* have been hit.
+
+        Parameters:
+        -----------
+            cords : tuple of ints
+                User shot.
+
+        Returns:
+        ---------
+            bool
+        """
         x = 0
         y = 1
         column = cords[x]

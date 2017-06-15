@@ -26,6 +26,6 @@ __Instance attributes__
 __Instance methods__
 
 - `__init__(self, name, positions, is_vertical=False)`
-    Creates Ship object with name, list of *Square* objects and list of all squares positions.
+    Creates Ship object with name, list of *Square* objects and list of all squares' positions.
 - `is_sunk(self)`
     Checks if ship is sunk or not. Returns bool.

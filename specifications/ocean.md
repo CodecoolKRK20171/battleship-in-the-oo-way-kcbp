@@ -21,8 +21,8 @@ __Instance methods__
 - `check_if_position_is_valid(self, new_ship_data)`
     Checks if given by user position of new ship is correct. If it's correct, creates new *Ship* object and adds it to the attribute *ships* list. Returns bool.
 - `insert_shot(self, cords)`
-    Inserts shot mark ('X' or 'O') on given coordinates into.
+    Inserts shot mark ('X' or 'O') on given coordinates into current board.
 - `insert_ship(self, ship)`
-    Inserts Ship object on the board.
+    Inserts *Ship* object on the board.
 - `check_if_sunk(self, cords)`
     Checks if all parts of the *Ship* have been hit. Returns bool.

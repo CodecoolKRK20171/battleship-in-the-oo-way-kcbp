@@ -3,23 +3,30 @@ import re
 
 
 class Player:
+    """Class has methods to create and manage Player object.
 
+    Attributes:
+        name : str
+        player_ocean :  Ocean obj
+        enemy_ocean : Ocean obj
+    """
     def __init__(self, name):
+        """Creates Player object."""
         self.name = name
         self.player_ocean = Ocean()
         self.enemy_ocean = Ocean()
 
     def choose_initial_ship_position(self, ship_name):
-        """
-        parameters:
+        """Takes ships positions from the user.
+
+        Parameters:
         -----------
-        ship names
+            ship_name : str
 
-        Takes ships positions from user.
-
-        returns:
+        Returns:
         ---------
-        list with ships names as keys and tupples of given_positions as values and situation as bool
+            new_ship_data : list
+                List with ships name, tuples of given positions and orientation as bool.
         """
         ship_position_cords = Player.take_coordinates('Enter ship starting coordinates for', ship_name)
         new_ship_data = [ship_name, ship_position_cords]
@@ -29,7 +36,19 @@ class Player:
         return new_ship_data
 
     def is_vertical(self, ship_name, new_ship_data):
-        """indicates ship direction. True if vertical, False if horizontal"""
+        """Indicates ship direction (True if vertical, False if horizontal) and add it to the list.
+
+        Parameters:
+        -----------
+            ship_name : str
+            new_ship_data : list
+                List with ships name, tuples of given positions and orientation as bool.
+
+        Returns:
+        ---------
+            new_ship_data : list
+                List with ships name, tuples of given positions and orientation as bool.
+         """
 
         is_vertical = input('If situation of ' + ship_name + ' suppouse to be vertical, input 1, otherwise 0: ')
         if is_vertical == "1":
@@ -42,12 +61,12 @@ class Player:
         return new_ship_data
 
     def choose_shot_cords(self):
-        """
-        Takes coordinates for atack from user.
+        """Takes coordinates for attack from user.
 
-        returns
+        Returns
         -------
-        tuple with two integers
+            shot_cords : tuple of ints
+                Shot coordinates.
         """
         shot_cords = Player.take_coordinates('Enter shot coordinates')
 
@@ -55,16 +74,17 @@ class Player:
 
     @staticmethod
     def take_coordinates(input_message, ship_name=""):
-        """
-        parameters:
+        """Converts letters to numbers(0,10) in shot coordinates.
+
+        Parameters:
         -----------
-        takes input message, and ship name if exist
+            input_message : str
+            ship_name : str
 
-        method converts letters to numbers(0,10)
-
-        returns:
+        Returns:
         --------
-        tuple with two integers as cords
+            cords_xy : tuple of ints
+                Coordinates.
         """
         letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
         numbers = [str(i) for i in list(range(1, 11))]
