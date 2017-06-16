@@ -21,9 +21,14 @@ class Ocean:
 
     def __str__(self):
         """Prints current board state."""
-        output = ''
+        output = '   A B C D E F G H I J\n'
+        counter = 1
         for row in self.board:
-            output += ''.join(row) + '\n'
+            if counter < 10:
+                output += ' '
+            output += str(counter) + ' '
+            output += ' '.join(row) + '\n'
+            counter += 1
         return output
 
     def check_if_position_is_valid(self, new_ship_data):
