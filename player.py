@@ -1,4 +1,5 @@
 from ocean import Ocean
+from ship import Ship
 import re
 
 
@@ -89,7 +90,12 @@ class Player:
         letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
         numbers = [str(i) for i in list(range(1, 11))]
 
-        ship_or_shot_cords = input('{} {} (f.e. a6/A6):'.format(input_message, ship_name)).upper()
+        if ship_name != '':
+            ship_or_shot_cords = input('{} {} ({} squares) (f.e. a6/A6):'.format(input_message,
+                                                                                 ship_name,
+                                                                                 Ship.ship_types[ship_name])).upper()
+        else:
+            ship_or_shot_cords = input('{} {} (f.e. a6/A6):'.format(input_message, ship_name)).upper()
 
         if re.match("^[a-jA-J][1-9]$|^[a-jA-J][1][0]$", ship_or_shot_cords):
             coordinates = [ship_or_shot_cords[0], ship_or_shot_cords[1:]]
