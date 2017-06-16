@@ -83,7 +83,7 @@ def shot_handle(player):
     return is_hit
 
 
-def is_win(current_player):
+def turn_handle(current_player):
     """Checks if the winning condition is fulfilled.
 
     Parameters:
@@ -102,6 +102,8 @@ def is_win(current_player):
         if not current_player.enemy_ocean.ships:
             print('{} win!'.format(current_player.name))
             return True
+    
+    return False
 
 
 def main():
@@ -118,8 +120,10 @@ def main():
     is_win = False
     current_player = player_one
 
-    while not is_win(current_player):
+    while not is_win:
 
+        is_win = turn_handle(current_player)
+        
         if current_player == player_one:
             current_player = player_two
         else:
